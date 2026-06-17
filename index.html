@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arshdeep Kaur — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0D0F14;
+      --surface:  #161A22;
+      --border:   #252B38;
+      --accent:   #7C9EFF;   /* soft indigo-blue */
+      --accent2:  #FFD166;   /* warm gold */
+      --text:     #E8EAF0;
+      --muted:    #727B8E;
+      --white:    #FFFFFF;
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 2.5rem;
+  background: rgba(13,15,20,.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--accent2);
+  letter-spacing: .03em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: .85rem; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 2.5rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: var(--accent);
+  letter-spacing: .15em; text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent2);
+}
+.hero-sub {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 420px; margin-bottom: 2.5rem;
+}
+.btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  padding: .75rem 1.8rem; border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .88rem; font-weight: 500;
+  letter-spacing: .06em; text-decoration: none;
+  transition: all .2s; cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--accent); color: var(--bg);
+}
+.btn-primary:hover { background: #a0b8ff; }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* hero right – floating code card */
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 50%);
+  z-index: -1; opacity: .3;
+}
+.card-header {
+  display: flex; gap: .5rem; margin-bottom: 1.2rem;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+.code-block {
+  font-family: 'DM Mono', monospace;
+  font-size: .82rem;
+  line-height: 2;
+  color: var(--muted);
+}
+.code-block .kw { color: var(--accent); }
+.code-block .str { color: var(--accent2); }
+.code-block .fn  { color: #A8D8A8; }
+.code-block .cm  { color: #444E60; }
+
+/* ── SECTION SHELL ── */
+section { padding: 6rem 2.5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: .8rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white);
+  margin-bottom: 3rem;
+}
+.divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: start;
+}
+.about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+.tag {
+  padding: .35rem .9rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: .78rem; color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+.about-details { display: flex; flex-direction: column; gap: 1.5rem; }
+.detail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.4rem 1.6rem;
+}
+.detail-card h4 {
+  color: var(--accent2); font-size: .78rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 500; margin-bottom: .5rem;
+}
+.detail-card p { color: var(--text); font-size: .92rem; }
+.detail-card span { color: var(--muted); font-size: .82rem; }
+
+/* ── SKILLS ── */
+.skills-section { background: var(--surface); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+.skill-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.4rem;
+  transition: border-color .2s, transform .2s;
+}
+.skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.skill-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+.skill-name { font-size: .9rem; color: var(--text); font-weight: 500; }
+.skill-level {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--muted);
+  margin-top: .3rem;
+}
+.skill-bar {
+  height: 3px; background: var(--border); border-radius: 2px;
+  margin-top: .7rem; overflow: hidden;
+}
+.skill-fill {
+  height: 100%; background: var(--accent); border-radius: 2px;
+  transition: width 1s ease;
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.8rem;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem;
+  display: flex; flex-direction: column;
+  transition: border-color .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.project-card .corner-accent {
+  position: absolute; top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle at top right, rgba(124,158,255,.12), transparent 70%);
+}
+.project-type {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--accent);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: .8rem;
+}
+.project-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; color: var(--white);
+  margin-bottom: .8rem;
+}
+.project-card p { color: var(--muted); font-size: .92rem; flex: 1; }
+.project-stack {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  margin-top: 1.5rem;
+}
+.stack-tag {
+  padding: .25rem .7rem;
+  background: rgba(124,158,255,.08);
+  border: 1px solid rgba(124,158,255,.2);
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--accent);
+}
+
+/* ── EDUCATION ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 2rem; position: relative; padding-bottom: 3rem;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute; left: 119px; top: 8px; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.timeline-item:last-child::before { display: none; }
+.timeline-year {
+  font-family: 'DM Mono', monospace;
+  font-size: .8rem; color: var(--accent2);
+  padding-top: .1rem; text-align: right;
+}
+.timeline-dot {
+  position: absolute; left: 112px; top: 6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+}
+.timeline-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; color: var(--white); margin-bottom: .3rem;
+}
+.timeline-body .org { color: var(--accent); font-size: .88rem; margin-bottom: .5rem; }
+.timeline-body p { color: var(--muted); font-size: .9rem; }
+
+/* ── CONTACT ── */
+.contact-section {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+  border-top: 1px solid var(--border);
+}
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center;
+}
+.contact-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white); margin-bottom: 1rem;
+}
+.contact-cta p { color: var(--muted); margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  text-decoration: none;
+  padding: 1rem 1.4rem;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; transition: border-color .2s;
+}
+.contact-link:hover { border-color: var(--accent); }
+.contact-link-icon { font-size: 1.3rem; }
+.contact-link-text { flex: 1; }
+.contact-link-text strong { display: block; color: var(--text); font-size: .9rem; }
+.contact-link-text span { color: var(--muted); font-size: .8rem; }
+.contact-link-arrow { color: var(--muted); font-size: 1rem; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p { color: var(--muted); font-size: .82rem; }
+footer .footer-mono {
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem; color: var(--border);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-card { display: none; }
+  .timeline-item { grid-template-columns: 80px 1fr; gap: 1.2rem; }
+  .timeline-item::before { left: 79px; }
+  .timeline-dot { left: 72px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<!--<nav>
+  <div class="nav-logo">AK.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>-->
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">// Web Developer &amp; CS Graduate</div>
+      <h1>
+        Building things<br>for the <em>web</em>.
+      </h1>
+      <p class="hero-sub">
+        I'm Arshdeep Kaur — a fresher based in Punjab, India, with a passion for clean code, functional UI, and shipping real projects.
+      </p>
+      <div class="btn-row">
+        <!-- <a href="#projects" class="btn btn-primary">View Projects</a> -->
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <div class="code-block">
+          <span class="cm">// arshdeep.php</span><br>
+          <span class="kw">$developer</span> = [<br>
+          &nbsp;&nbsp;<span class="str">"name"</span> =&gt; <span class="str">"Arshdeep Kaur"</span>,<br>
+          &nbsp;&nbsp;<span class="str">"role"</span> =&gt; <span class="str">"Web Developer"</span>,<br>
+          &nbsp;&nbsp;<span class="str">"stack"</span> =&gt; [<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"PHP"</span>, <span class="str">"MySQL"</span>,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"JS"</span>, <span class="str">"Python"</span><br>
+          &nbsp;&nbsp;],<br>
+          &nbsp;&nbsp;<span class="str">"status"</span> =&gt; <span class="fn">"open_to_work"</span><br>
+          ];<br><br>
+          <span class="fn">echo</span> <span class="str">"Ready to build! 🚀"</span>;
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>just given exams of final semester of MSc Computer Science student at Guru Nanak National College for Women ,Nakodar</strong>, set to graduate in 2026. Before this, I completed my BCA with Distinction from a GNDU-affiliated college.
+        </p>
+        <p>
+          I love working at the intersection of backend logic and clean front-end experience. My hands-on project work includes building a full-stack <strong>Physiotherapy Website</strong> and a <strong>Pong Game in Python</strong>, plus six weeks of industrial training in Core PHP.
+        </p>
+        
+        <div class="about-tags">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">ASP.NET</span>
+          <span class="tag">Git</span>
+          <span class="tag">XAMPP</span>
+        </div>
+      </div>
+      <div class="about-details">
+        <div class="detail-card">
+          <h4>Location</h4>
+          <p>Shahkot, Punjab, India</p>
+          <span>Open to on-site roles in Jalandhar &amp; nearby</span>
+        </div>
+        <div class="detail-card">
+          <h4>Education</h4>
+          <p>MSc Computer Science — GNDU, Amritsar</p>
+          <span>Graduating 2026 · CGPA ~7.94</span>
+        </div>
+        <div class="detail-card">
+          <h4>Training</h4>
+          <p>Core PHP — GTB Computer Education, Jalandhar</p>
+          <span>6-week Industrial Training</span>
+        </div>
+        <div class="detail-card">
+          <h4>Languages</h4>
+          <p>Punjabi · Hindi · English</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- SKILLS -->
+
+<section id="skills" class="skills-section">
+  <div class="section-inner">
+    <div class="section-label">02 — Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🐘</div>
+        <div class="skill-name">PHP</div>
+        <div class="skill-level">Core + Industrial Training</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-level">Database Design &amp; Queries</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML / CSS</div>
+        <div class="skill-level">Responsive Layouts</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-level">DOM Manipulation, ES6+</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-level">OOP, Game Dev</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔷</div>
+        <div class="skill-name">ASP.NET / ADO.NET</div>
+        <div class="skill-level">Academic + Projects</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Git / GitHub</div>
+        <div class="skill-level">Version Control</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-name">XAMPP</div>
+        <div class="skill-level">Local Dev Environment</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PROJECTS -->
+
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">03 — Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+   
+
+```
+  <div class="project-card">
+    <div class="corner-accent"></div>
+    <div class="project-type">Full-Stack Web App</div>
+    <h3>Physiotherapy Website</h3>
+    <p>
+      A complete dynamic website for a physiotherapy clinic — patients can browse services, book appointments, and contact the clinic. Built with PHP + MySQL backend and a clean, responsive frontend.
+    </p>
+    <div class="project-stack">
+      <span class="stack-tag">PHP</span>
+      <span class="stack-tag">MySQL</span>
+      <span class="stack-tag">HTML</span>
+      <span class="stack-tag">CSS</span>
+      <span class="stack-tag">JavaScript</span>
+      <span class="stack-tag">XAMPP</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="corner-accent"></div>
+    <div class="project-type">Python Game</div>
+    <h3>Pong Game</h3>
+    <p>
+      A classic Pong game built in Python using object-oriented programming principles — paddles, ball physics, collision detection, and score tracking, all from scratch.
+    </p>
+    <div class="project-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">OOP</span>
+      <span class="stack-tag">Pygame</span>
+    </div>
+  </div>
+
+  
+```
+
+  </div>
+</section>
+<hr class="divider">
+
+<!-- EDUCATION -->
+
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">04 — Education</div>
+    <h2 class="section-title">Academic journey</h2>
+    <div class="timeline">
+
+```
+  <div class="timeline-item">
+    <div class="timeline-year">2026&nbsp;&nbsp; </div>
+    <div class="timeline-dot"></div>
+    <div class="timeline-body">
+      <h3>MSc Computer Science</h3>
+      <div class="org">Guru Nanak National College For Women</div>
+      <p>Coursework: OOP & UML, ASP.NET, Microprocessor Architecture (Intel 8086), Database Systems, Software Engineering. CGPA ~7.94.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-year">2026&nbsp; &nbsp; </div>
+    <div class="timeline-dot"></div>
+    <div class="timeline-body">
+      <h3>Industrial Training — Core PHP</h3>
+      <div class="org">GTB Computer Education, Jalandhar</div>
+      <p>6 weeks of hands-on PHP development training, covering server-side scripting, MySQL integration, and CRUD applications.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-year">2024&nbsp; &nbsp; </div>
+    <div class="timeline-dot"></div>
+    <div class="timeline-body">
+      <h3>BCA — Bachelor of Computer Applications</h3>
+      <div class="org">GNDU-affiliated College, Nakodar</div>
+      <p>Graduated with Distinction. Foundation in programming, web technologies, data structures, and computer fundamentals.</p>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+<hr class="divider">
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-cta">
+        <div class="section-label">05 — Contact</div>
+        <h2>Let's work<br>together.</h2>
+        <p>I'm actively looking for web development internships and fresher roles — on-site preferred in Jalandhar and surrounding areas. Drop me a message!</p>
+        <a href="mailto:arshkaur1396@gmail.com" class="btn btn-primary" style="display:inline-block">Send an Email</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:arshkaur1396@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          <div class="contact-link-text">
+            <strong>Email</strong>
+            <span>arshkaur1396@gmail.com</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:+919914962563" class="contact-link">
+          <span class="contact-link-icon">📞</span>
+          <div class="contact-link-text">
+            <strong>Phone</strong>
+            <span>+91 99149 62563</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://linkedin.com/in/arshdeep-kaur-a5947a411" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <div class="contact-link-text">
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/in/arshdeep-kaur-a5947a411</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com/arshkaur1396" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🐙</span>
+          <div class="contact-link-text">
+            <strong>GitHub</strong>
+            <span>github.com/arshkaur1396</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">📍</span>
+          <div class="contact-link-text">
+            <strong>Location</strong>
+            <span>Shahkot, Punjab, India</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p>© 2026 Arshdeep Kaur. Designed &amp; coded with ☕</p>
+  <span class="footer-mono">MSc CS · GNDU</span>
+</footer>
+
+</body>
+</html>
